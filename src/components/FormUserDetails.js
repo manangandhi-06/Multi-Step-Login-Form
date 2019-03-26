@@ -1,0 +1,80 @@
+import React, { Component } from 'react'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import AppBar from '@material-ui/core/AppBar';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+    button: {
+        marginLeft: theme.spacing.unit*80,
+    },
+
+
+});
+  
+class FormUserDetails extends Component {
+
+    
+
+    continue = e => {
+        e.preventDefault()
+
+        this.props.nextStep();
+    }
+
+
+
+    render() {
+        const {values, handleChange} = this.props
+        const { classes } = this.props
+        return (
+            <MuiThemeProvider>
+                <React.Fragment>     
+                <AppBar position="static" color="primary">
+                    <Toolbar>
+                        <Typography className="title" variant="h6" color="inherit">
+                            Enter User Details
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <TextField
+                  className = {classes.button}  
+                  id="standard-name"
+                  label="First Name"
+                  value={values.firstName}
+                  onChange={handleChange('firstName')}
+                  margin="normal"
+                />
+                <br />
+                <TextField
+                  className = {classes.button}  
+                  id="standard-name"
+                  label="Last Name"
+                  value={values.lastName}
+                  onChange={handleChange('lastName')}
+                  margin="normal"
+                />
+                <br />
+                <TextField
+                  className = {classes.button}  
+                  id="standard-name"
+                  label="Email"
+                  value={values.email}
+                  onChange={handleChange('email')}
+                  margin="normal"
+                />
+                <br />
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.continue}>
+                    Continue
+                </Button>
+                </React.Fragment>
+            </MuiThemeProvider>
+        )
+    }
+}
+
+
+export default withStyles(styles)(FormUserDetails)
